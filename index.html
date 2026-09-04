@@ -1169,8 +1169,8 @@
       let lastTickSegment = -1;
 
       function customDramaticEase(p) {
-        // High-order deceleration with prolonged crawl at end
-        return 1 - Math.pow(1 - p, 6.2);
+        // Smooth dramatic ease-out that completes crisply without lingering frozen
+        return 1 - Math.pow(1 - p, 4.2);
       }
 
       function animateSpin(now) {
@@ -1211,7 +1211,7 @@
       const result = segments[targetIndex];
 
       if (currentStage === 0) {
-        // Rocio's prank done -> Prompt Jorge
+        // Rocio's prank done -> Prompt Jorge instantly
         document.getElementById('modalEmoji').innerText = "😂";
         document.getElementById('modalTitle').innerText = "¡Regalo Oficial para Rocío!";
         document.getElementById('modalSub').innerText = "La ruleta ha adjudicado solemnemente a Rocío:";
@@ -1222,10 +1222,10 @@
         
         setTimeout(() => {
           document.getElementById('prankModal').classList.add('active');
-        }, 500);
+        }, 120);
 
       } else if (currentStage === 1) {
-        // Jorge's prank done -> Prompt Joint Attempt
+        // Jorge's prank done -> Prompt Joint Attempt instantly
         document.getElementById('modalEmoji').innerText = "👀";
         document.getElementById('modalTitle').innerText = "¡Regalo Oficial para Jorge!";
         document.getElementById('modalSub').innerText = "La ruleta ha hablado de nuevo y a Jorge le toca:";
@@ -1236,10 +1236,10 @@
 
         setTimeout(() => {
           document.getElementById('prankModal').classList.add('active');
-        }, 500);
+        }, 120);
 
       } else {
-        // Joint Spin landed on JACKPOT -> Move to chest
+        // Joint Spin landed on JACKPOT -> Move to chest promptly
         confetti({
           particleCount: 90,
           spread: 80,
@@ -1249,7 +1249,7 @@
         setTimeout(() => {
           goToScreen('screen-chest');
           AudioEngine.startDrumRoll();
-        }, 1200);
+        }, 400);
       }
     }
 

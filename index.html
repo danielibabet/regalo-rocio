@@ -818,10 +818,6 @@
       <p class="subtitle" style="font-size:0.95rem; color:var(--text-muted); margin-bottom:15px;">Haced taps rápidos juntos sobre el cofre para romper el sello mágico.</p>
 
       <div class="chest-stage">
-        <div class="tap-counter-badge" id="tapBadge">
-          Taps restantes: <span id="tapCountDisplay">20</span>
-        </div>
-
         <div class="chest-box-container" id="chestContainer" onclick="handleChestTap(event)">
           <div class="chest-energy-aura" id="chestAura"></div>
           <div class="chest-emoji" id="chestEmoji">🎁</div>
@@ -1261,8 +1257,8 @@
     }
 
     /* ================= SCREEN 2: CLASH ROYALE CHEST TAP MECHANIC ================= */
-    let remainingTaps = 20;
-    const totalTaps = 20;
+    let remainingTaps = 50;
+    const totalTaps = 50;
 
     function handleChestTap(event) {
       if (remainingTaps <= 0) return;
@@ -1271,13 +1267,13 @@
       remainingTaps--;
       const progressPercent = ((totalTaps - remainingTaps) / totalTaps) * 100;
 
-      document.getElementById('tapCountDisplay').innerText = remainingTaps;
+      // Update progress bar
       document.getElementById('progressFill').style.width = `${progressPercent}%`;
 
-      const pitchMultiplier = 1 + ((totalTaps - remainingTaps) / totalTaps) * 1.2;
+      const pitchMultiplier = 1 + ((totalTaps - remainingTaps) / totalTaps) * 1.3;
       AudioEngine.playTap(pitchMultiplier);
 
-      if (navigator.vibrate) navigator.vibrate(25 + (totalTaps - remainingTaps) * 2);
+      if (navigator.vibrate) navigator.vibrate(25 + Math.floor(((totalTaps - remainingTaps) / totalTaps) * 35));
 
       const chestEmoji = document.getElementById('chestEmoji');
       const chestAura = document.getElementById('chestAura');
@@ -1287,16 +1283,16 @@
       void chestEmoji.offsetWidth;
       chestEmoji.classList.add('chest-shaking');
 
-      const glowScale = 1 + ((totalTaps - remainingTaps) / totalTaps) * 0.8;
+      const glowScale = 1 + ((totalTaps - remainingTaps) / totalTaps) * 0.9;
       const glowOpacity = 0.4 + ((totalTaps - remainingTaps) / totalTaps) * 0.6;
       chestAura.style.transform = `scale(${glowScale})`;
       chestAura.style.opacity = glowOpacity;
 
       spawnTapParticles(event, chestContainer);
 
-      if (remainingTaps % 4 === 0 || remainingTaps <= 3) {
+      if (remainingTaps % 6 === 0 || remainingTaps <= 5) {
         confetti({
-          particleCount: 15 + (totalTaps - remainingTaps),
+          particleCount: 15 + Math.floor(((totalTaps - remainingTaps) / totalTaps) * 20),
           spread: 60,
           origin: { y: 0.6 }
         });

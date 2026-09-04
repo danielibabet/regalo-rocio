@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>¡Feliz Cumpleaños Rocío! 🎉</title>
+  <title>¡Feliz Cumpleaños Rocío y Jorge! 🎉</title>
 
   <!-- Google Fonts & Canvas Confetti -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -174,10 +174,11 @@
       border: 1px solid rgba(255, 234, 167, 0.25);
       margin-bottom: 6px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
     }
 
     h1.title {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       font-weight: 900;
       line-height: 1.15;
       margin-bottom: 10px;
@@ -185,6 +186,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 4px 20px rgba(255, 209, 102, 0.3);
+      transition: all 0.3s ease;
     }
 
     /* WHEEL LEGEND CARD */
@@ -224,6 +226,7 @@
       padding: 6px 12px;
       border-radius: 10px;
       width: 100%;
+      transition: background 0.3s ease;
     }
 
     .legend-item.jackpot {
@@ -237,10 +240,11 @@
     }
 
     .legend-text {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
       color: #ffffff;
       text-align: left;
+      line-height: 1.2;
     }
 
     .legend-item.jackpot .legend-text {
@@ -354,9 +358,9 @@
       background: linear-gradient(135deg, #ff477e 0%, #ff70a6 50%, #ff9770 100%);
       color: #ffffff;
       font-family: 'Outfit', sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 800;
-      padding: 16px 36px;
+      padding: 16px 28px;
       border: none;
       border-radius: 50px;
       box-shadow: 0 10px 25px rgba(255, 71, 126, 0.45), 0 2px 0 rgba(255, 255, 255, 0.4) inset;
@@ -388,7 +392,12 @@
       box-shadow: 0 10px 25px rgba(251, 133, 0, 0.45), 0 2px 0 rgba(255, 255, 255, 0.5) inset;
     }
 
-    /* MODAL POPUP (First Spin Dialog) */
+    .btn-blue {
+      background: linear-gradient(135deg, #3a86ff 0%, #00b4d8 100%);
+      box-shadow: 0 10px 25px rgba(0, 180, 216, 0.45), 0 2px 0 rgba(255, 255, 255, 0.5) inset;
+    }
+
+    /* MODAL POPUP */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -415,7 +424,7 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 71, 126, 0.2);
       border-radius: 28px;
-      padding: 30px 22px;
+      padding: 28px 20px;
       text-align: center;
       max-width: 360px;
       width: 100%;
@@ -435,8 +444,8 @@
     }
 
     .modal-emoji {
-      font-size: 3.5rem;
-      margin-bottom: 12px;
+      font-size: 3.2rem;
+      margin-bottom: 10px;
       display: inline-block;
       animation: bounce 1.2s infinite alternate ease-in-out;
     }
@@ -452,28 +461,29 @@
     }
 
     .modal-card h2 {
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       font-weight: 800;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: #ffd166;
     }
 
     .modal-result-box {
       background: rgba(255, 255, 255, 0.08);
       border-radius: 16px;
-      padding: 14px 16px;
-      margin: 14px 0 20px;
-      font-size: 1.15rem;
+      padding: 12px 14px;
+      margin: 12px 0 18px;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #ffffff;
       border: 1px dashed rgba(255, 255, 255, 0.25);
+      line-height: 1.35;
     }
 
     .modal-card p {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
       line-height: 1.45;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     /* SCREEN 2: CLASH ROYALE CHEST OPENING */
@@ -701,7 +711,7 @@
 
     .ticket-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.85rem;
+      font-size: 1.8rem;
       font-weight: 700;
       color: #ffd166;
       margin-bottom: 6px;
@@ -746,14 +756,6 @@
       font-weight: 600;
       color: #ffffff;
     }
-
-    .action-btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 100%;
-      align-items: center;
-    }
   </style>
 </head>
 
@@ -771,27 +773,14 @@
     <!-- ================= SCREEN 1: THE WHEEL ================= -->
     <div id="screen-wheel" class="screen active">
       <div class="top-header">
-        <div class="badge">✨ Edición Especial Cumpleaños ✨</div>
-        <h1 class="title">¡Feliz Cumple Rocío!</h1>
+        <div class="badge" id="turnBadge">✨ TURNO DE ROCÍO ✨</div>
+        <h1 class="title" id="wheelMainTitle">¡Feliz Cumple Rocío!</h1>
 
         <!-- Pre-wheel Prizes Legend -->
         <div class="wheel-legend-card">
-          <div class="legend-title">Premios Posibles</div>
-          <div class="legend-grid">
-            <div class="legend-item"><span class="legend-emoji">🩰</span><span class="legend-text">Ver Barbie
-                Cascanueces
-                con padre</span></div>
-            <div class="legend-item"><span class="legend-emoji">👑</span><span class="legend-text">Ser la hija favorita
-                de
-                madre siempre</span></div>
-            <div class="legend-item"><span class="legend-emoji">💅</span><span class="legend-text">Maquillar y pintar
-                uñas a Jorge</span></div>
-            <div class="legend-item"><span class="legend-emoji">🕺</span><span class="legend-text">Baile sexy de
-                Mario</span></div>
-            <div class="legend-item"><span class="legend-emoji">🎾</span><span class="legend-text">Partido de padel con
-                Dani</span></div>
-            <div class="legend-item jackpot"><span class="legend-emoji">🎁</span><span class="legend-text">¡¡Regalo
-                sorpresa!!</span></div>
+          <div class="legend-title" id="legendTitle">Premios Posibles para Rocío</div>
+          <div class="legend-grid" id="legendGrid">
+            <!-- Dynamic legend injected via JS -->
           </div>
         </div>
       </div>
@@ -826,7 +815,7 @@
     <div id="screen-chest" class="screen">
       <div class="badge">🌟 ¡PREMIO SUPREMO DESBLOQUEADO! 🌟</div>
       <h1 class="title">¡Cofre Misterioso!</h1>
-      <p class="subtitle">Haz taps rápidos sobre el cofre para romper el sello mágico y abrirlo.</p>
+      <p class="subtitle" style="font-size:0.95rem; color:var(--text-muted); margin-bottom:15px;">Haced taps rápidos juntos sobre el cofre para romper el sello mágico.</p>
 
       <div class="chest-stage">
         <div class="tap-counter-badge" id="tapBadge">
@@ -838,7 +827,7 @@
           <div class="chest-emoji" id="chestEmoji">🎁</div>
         </div>
 
-        <div class="tap-hint">⚡ ¡TOCA RÁPIDO PARA ABRIR! ⚡</div>
+        <div class="tap-hint">⚡ ¡TOCAD RÁPIDO PARA ABRIR! ⚡</div>
 
         <div class="progress-bar-container">
           <div class="progress-bar-fill" id="progressFill"></div>
@@ -848,7 +837,7 @@
 
     <!-- ================= SCREEN 3: GRAND REVEAL (PUPPY TICKET) ================= -->
     <div id="screen-reveal" class="screen">
-      <div class="badge">🐾 ¡SORPRESA FINAL! 🐾</div>
+      <div class="badge">🐾 ¡SORPRESA FINAL PARA LOS DOS! 🐾</div>
 
       <div class="golden-ticket-card">
         <div class="ticket-ribbon">OFICIAL</div>
@@ -860,16 +849,15 @@
         </div>
 
         <p class="ticket-description">
-          ¡Ahora mismo se están preparando las próximas camadas! Muy pronto daremos la bienvenida al nuevo miembro
-          peludo de la familia... <strong>¡y tú elegirás el nombre y lo consentirás!</strong> 🐶💛
+          ¡Ahora mismo se están preparando las próximas camadas! Muy pronto daréis la bienvenida al nuevo miembro
+          peludo de vuestra familia... <strong>¡y juntos elegiréis el nombre y lo consentiréis!</strong> 🐶💛
         </p>
 
         <div class="family-signatures">
           <div class="family-title">Con todo nuestro amor:</div>
           <div class="family-tags">
-            <span class="family-tag">👨 Papá</span>
-            <span class="family-tag">👩 Mamá</span>
-            <span class="family-tag">👦 Jorge</span>
+            <span class="family-tag">👨 Papá / Javi</span>
+            <span class="family-tag">👩 Mamá / Beatriz</span>
             <span class="family-tag">🕺 Mario</span>
             <span class="family-tag">🎾 Dani</span>
           </div>
@@ -880,30 +868,29 @@
 
   </div>
 
-  <!-- MODAL: FIRST SPIN PRANK -->
-  <div class="modal-overlay" id="firstSpinModal">
+  <!-- MODAL: INTERMEDIATE PRANK DIALOGS -->
+  <div class="modal-overlay" id="prankModal">
     <div class="modal-card">
-      <div class="modal-emoji">😂</div>
-      <h2>¡Tenemos un Ganador!</h2>
-      <p>La ruleta ha hablado de forma 100% legal y justa:</p>
+      <div class="modal-emoji" id="modalEmoji">😂</div>
+      <h2 id="modalTitle">¡Tenemos un Ganador!</h2>
+      <p id="modalSub">La ruleta ha hablado de forma 100% legal y justa:</p>
 
       <div class="modal-result-box" id="modalResultText">
-        "Ver Barbie Cascanueces con padre"
+        "Premio aquí"
       </div>
 
-      <p>
-        ¿No estás del todo convencida con tu premio? Por ser tu cumpleaños, ¡el sistema te concede <strong>1 tiro extra
-          de la suerte</strong>!
+      <p id="modalDesc">
+        Descripción del paso...
       </p>
 
-      <button class="btn btn-gold" onclick="acceptSecondChance()">
-        <span>🔄 ¡GIRAR DE NUEVO!</span>
+      <button id="modalBtn" class="btn btn-gold" onclick="handleModalNextStep()">
+        <span>SIGUIENTE PASO</span>
       </button>
     </div>
   </div>
 
   <script>
-    /* ================= AUDIO ENGINE (Web Audio API - No external files required) ================= */
+    /* ================= AUDIO ENGINE ================= */
     const AudioEngine = {
       ctx: null,
       drumRollInterval: null,
@@ -996,7 +983,6 @@
 
       playPuppyBark() {
         if (!this.ctx) return;
-        // Cute playful synth bark
         [0, 220].forEach((delay) => {
           setTimeout(() => {
             const osc = this.ctx.createOscillator();
@@ -1015,26 +1001,97 @@
       }
     };
 
-    /* ================= WHEEL DATA & DRAWING ================= */
-    const wheelSegments = [
-      { text: "Ver Barbie Cascanueces con padre", color: "#FF477E", textColor: "#FFF", icon: "🩰" },
-      { text: "Ser la hija favorita de madre siempre", color: "#8338EC", textColor: "#FFF", icon: "👑" },
-      { text: "Maquillar y pintar uñas a Jorge", color: "#3A86FF", textColor: "#FFF", icon: "💅" },
-      { text: "Baile sexy de Mario", color: "#06D6A0", textColor: "#FFF", icon: "🕺" },
-      { text: "Partido de padel con Dani", color: "#FB5607", textColor: "#FFF", icon: "🎾" },
-      { text: "¡¡Regalo sorpresa!!", color: "#FFBE0B", textColor: "#000", isJackpot: true, icon: "🎁" }
+    /* ================= WHEEL DATASETS ================= */
+    // STEP 0: ROCÍO's Wheel
+    const rocioSegments = [
+      { text: "Ver Barbie Cascanueces con padre", color: "#FF477E", icon: "🩰" },
+      { text: "Ser la hija favorita de madre siempre", color: "#8338EC", icon: "👑" },
+      { text: "Maquillar y pintar uñas a Jorge", color: "#3A86FF", icon: "💅" },
+      { text: "Baile sexy de Mario", color: "#06D6A0", icon: "🕺" },
+      { text: "Partido de padel con Dani", color: "#FB5607", icon: "🎾" },
+      { text: "¡¡Regalo sorpresa!!", color: "#FFBE0B", icon: "🎁", isJackpot: true }
     ];
+
+    // STEP 1: JORGE's Wheel
+    const jorgeSegments = [
+      { text: "Ver el clásico con Javi llevando la camiseta del Madrid", color: "#3A86FF", icon: "⚽" },
+      { text: "No probar nunca más la tortilla de patatas de Beatriz", color: "#E63946", icon: "🍳" },
+      { text: "Rocío jugará contigo al FIFA 1h al día", color: "#06D6A0", icon: "🎮" },
+      { text: "Prestarás 1 año tu PS5 a Dani el 19 de Noviembre", color: "#8338EC", icon: "🕹️" },
+      { text: "¡¡Regalo sorpresa!!", color: "#FFBE0B", icon: "🎁", isJackpot: true }
+    ];
+
+    // STEP 2: JOINT Wheel (Both Rocío & Jorge)
+    const jointSegments = [
+      { text: "Ver Barbie Cascanueces con padre", color: "#FF477E", icon: "🩰" },
+      { text: "Ver el clásico con Javi (camiseta Madrid)", color: "#3A86FF", icon: "⚽" },
+      { text: "Baile sexy de Mario", color: "#06D6A0", icon: "🕺" },
+      { text: "Prestar PS5 a Dani por 1 año", color: "#8338EC", icon: "🕹️" },
+      { text: "Partido de padel con Dani", color: "#FB5607", icon: "🎾" },
+      { text: "¡¡Regalo sorpresa!!", color: "#FFBE0B", icon: "🎁", isJackpot: true }
+    ];
+
+    /* ================= STATE MANAGEMENT ================= */
+    let currentStage = 0; // 0 = Rocio, 1 = Jorge, 2 = Joint Final
+    let isSpinning = false;
+    let chosenPrankIndex = 0;
+    let currentAngle = 0;
 
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
-    const numSegments = wheelSegments.length;
-    const arcSize = (2 * Math.PI) / numSegments;
-    let currentAngle = 0;
-    let isSpinning = false;
-    let spinCount = 0; // 0 = first spin, 1 = second rigged spin
-    let chosenPrankIndex = 0;
+    const pointer = document.getElementById('wheelPointer');
+
+    function getCurrentSegments() {
+      if (currentStage === 0) return rocioSegments;
+      if (currentStage === 1) return jorgeSegments;
+      return jointSegments;
+    }
+
+    function renderLegend() {
+      const segments = getCurrentSegments();
+      const legendGrid = document.getElementById('legendGrid');
+      const legendTitle = document.getElementById('legendTitle');
+      const turnBadge = document.getElementById('turnBadge');
+      const mainTitle = document.getElementById('wheelMainTitle');
+      const spinBtn = document.getElementById('spinBtn');
+
+      legendGrid.innerHTML = '';
+
+      if (currentStage === 0) {
+        turnBadge.innerText = "✨ TURNO DE ROCÍO ✨";
+        turnBadge.style.borderColor = "rgba(255, 71, 126, 0.4)";
+        mainTitle.innerText = "¡Feliz Cumple Rocío!";
+        legendTitle.innerText = "Premios posibles para Rocío:";
+        spinBtn.innerHTML = "<span>🎯 TIRAR RULETA ROCÍO</span>";
+        spinBtn.className = "btn";
+      } else if (currentStage === 1) {
+        turnBadge.innerText = "🎮 TURNO DE JORGE 🎮";
+        turnBadge.style.borderColor = "rgba(0, 180, 216, 0.4)";
+        mainTitle.innerText = "¡Feliz Cumple Jorge!";
+        legendTitle.innerText = "Premios posibles para Jorge:";
+        spinBtn.innerHTML = "<span>🎯 TIRAR RULETA JORGE</span>";
+        spinBtn.className = "btn btn-blue";
+      } else {
+        turnBadge.innerText = "🌟 ¡TIRADA CONJUNTA FINAL! 🌟";
+        turnBadge.style.borderColor = "rgba(255, 215, 0, 0.6)";
+        mainTitle.innerText = "¡Rocío y Jorge!";
+        legendTitle.innerText = "La Ruleta de la Verdad Definitiva:";
+        spinBtn.innerHTML = "<span>🍀 TIRAR JUNTOS DE LA RULETA</span>";
+        spinBtn.className = "btn btn-gold";
+      }
+
+      segments.forEach(seg => {
+        const item = document.createElement('div');
+        item.className = seg.isJackpot ? "legend-item jackpot" : "legend-item";
+        item.innerHTML = `<span class="legend-emoji">${seg.icon}</span><span class="legend-text">${seg.text}</span>`;
+        legendGrid.appendChild(item);
+      });
+    }
 
     function drawWheel() {
+      const segments = getCurrentSegments();
+      const numSegments = segments.length;
+      const arcSize = (2 * Math.PI) / numSegments;
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
       const radius = canvas.width / 2 - 10;
@@ -1042,10 +1099,10 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < numSegments; i++) {
-        const seg = wheelSegments[i];
+        const seg = segments[i];
         const angle = currentAngle + i * arcSize;
 
-        // Draw Sector
+        // Sector
         ctx.beginPath();
         ctx.fillStyle = seg.color;
         ctx.moveTo(centerX, centerY);
@@ -1058,7 +1115,7 @@
         ctx.strokeStyle = "rgba(255, 255, 255, 0.4)";
         ctx.stroke();
 
-        // Draw Icon UPRIGHT and perfectly centered in each slice
+        // Upright icon
         const midAngle = angle + arcSize / 2;
         const iconDistance = radius * 0.62;
         const iconX = centerX + Math.cos(midAngle) * iconDistance;
@@ -1073,44 +1130,43 @@
       }
     }
 
+    // Initialize display
+    renderLegend();
     drawWheel();
 
-    /* ================= WHEEL SPIN LOGIC ================= */
-    const pointer = document.getElementById('wheelPointer');
-
+    /* ================= SPIN ACTION ================= */
     function handleSpinClick() {
       if (isSpinning) return;
       AudioEngine.init();
       isSpinning = true;
       document.getElementById('spinBtn').disabled = true;
 
-      // Haptic feedback for iPhone if available
       if (navigator.vibrate) navigator.vibrate(50);
 
-      // Target calculation:
-      // The top pointer is at angle 3 * Math.PI / 2 (270 deg or -90 deg)
-      // Segment i occupies [currentAngle + i * arcSize, currentAngle + (i + 1) * arcSize]
-      // To place segment i under pointer at top (3*PI/2), we need:
-      // (currentAngle + i * arcSize + arcSize / 2) % 2PI = 3*PI/2 (mod 2PI)
+      const segments = getCurrentSegments();
+      const numSegments = segments.length;
+      const arcSize = (2 * Math.PI) / numSegments;
 
       let targetIndex;
-      if (spinCount === 0) {
-        // First spin: pick randomly from index 0 to 4 (the funny prank options)
-        chosenPrankIndex = Math.floor(Math.random() * 5);
+      if (currentStage === 0) {
+        // Rocio: Random from 0 to 4 (exclude jackpot)
+        chosenPrankIndex = Math.floor(Math.random() * (numSegments - 1));
+        targetIndex = chosenPrankIndex;
+      } else if (currentStage === 1) {
+        // Jorge: Random from 0 to 3 (exclude jackpot)
+        chosenPrankIndex = Math.floor(Math.random() * (numSegments - 1));
         targetIndex = chosenPrankIndex;
       } else {
-        // Second spin: ALWAYS index 5 (¡¡Regalo sorpresa!!)
-        targetIndex = 5;
+        // Joint: ALWAYS the jackpot (last index)
+        targetIndex = numSegments - 1;
       }
 
       const totalFullRotations = (5 + Math.floor(Math.random() * 2)) * 2 * Math.PI;
-      const pointerAngle = 1.5 * Math.PI; // Top position
+      const pointerAngle = 1.5 * Math.PI; // Top
       const segmentCenterAngle = targetIndex * arcSize + (arcSize / 2);
-
-      // Calculate target end angle
       const targetAngle = currentAngle + totalFullRotations + (pointerAngle - (currentAngle % (2 * Math.PI)) - segmentCenterAngle);
 
-      const duration = 4500; // ms
+      const duration = 4500;
       const startTime = performance.now();
       const startAngle = currentAngle;
       let lastTickSegment = -1;
@@ -1118,14 +1174,11 @@
       function animateSpin(now) {
         const elapsed = now - startTime;
         const progress = Math.min(elapsed / duration, 1);
-
-        // Ease out cubic / quart
         const ease = 1 - Math.pow(1 - progress, 3.5);
         currentAngle = startAngle + (targetAngle - startAngle) * ease;
 
         drawWheel();
 
-        // Calculate tick audio based on pointer crossing segment boundary
         const normalizedAngle = (pointerAngle - currentAngle) % (2 * Math.PI);
         const positiveAngle = normalizedAngle < 0 ? normalizedAngle + 2 * Math.PI : normalizedAngle;
         const currentSegment = Math.floor(positiveAngle / arcSize);
@@ -1133,7 +1186,7 @@
         if (currentSegment !== lastTickSegment) {
           AudioEngine.playTick();
           pointer.classList.remove('tick');
-          void pointer.offsetWidth; // trigger reflow
+          void pointer.offsetWidth;
           pointer.classList.add('tick');
           lastTickSegment = currentSegment;
           if (navigator.vibrate) navigator.vibrate(15);
@@ -1143,26 +1196,50 @@
           requestAnimationFrame(animateSpin);
         } else {
           isSpinning = false;
-          onSpinComplete(targetIndex);
+          onSpinFinished(targetIndex);
         }
       }
 
       requestAnimationFrame(animateSpin);
     }
 
-    function onSpinComplete(targetIndex) {
-      if (spinCount === 0) {
-        // Show first prank modal
-        const resultSeg = wheelSegments[chosenPrankIndex];
-        document.getElementById('modalResultText').innerText = `"${resultSeg.text}" ${resultSeg.icon}`;
+    function onSpinFinished(targetIndex) {
+      const segments = getCurrentSegments();
+      const result = segments[targetIndex];
+
+      if (currentStage === 0) {
+        // Rocio's prank done -> Prompt Jorge
+        document.getElementById('modalEmoji').innerText = "😂";
+        document.getElementById('modalTitle').innerText = "¡Regalo Oficial para Rocío!";
+        document.getElementById('modalSub').innerText = "La ruleta ha adjudicado solemnemente a Rocío:";
+        document.getElementById('modalResultText').innerText = `"${result.text}" ${result.icon}`;
+        document.getElementById('modalDesc').innerHTML = "¡Ese es tu regalo oficial! Pero espera... <strong>¡ahora le toca a Jorge girar la ruleta para conseguir el suyo!</strong> 🎲";
+        document.getElementById('modalBtn').innerHTML = "<span>👉 PASAR EL TURNO A JORGE</span>";
+        document.getElementById('modalBtn').className = "btn btn-blue";
+        
         setTimeout(() => {
-          document.getElementById('firstSpinModal').classList.add('active');
+          document.getElementById('prankModal').classList.add('active');
         }, 500);
+
+      } else if (currentStage === 1) {
+        // Jorge's prank done -> Prompt Joint Attempt
+        document.getElementById('modalEmoji').innerText = "👀";
+        document.getElementById('modalTitle').innerText = "¡Regalo Oficial para Jorge!";
+        document.getElementById('modalSub').innerText = "La ruleta ha hablado de nuevo y a Jorge le toca:";
+        document.getElementById('modalResultText').innerText = `"${result.text}" ${result.icon}`;
+        document.getElementById('modalDesc').innerHTML = "No se os ve muy conformes con vuestros regalos... 😅<br>Por ser vuestro cumple doble, ¡la organización os concede <strong>1 ÚNICA TIRADA CONJUNTA</strong> para salvar la situación!";
+        document.getElementById('modalBtn').innerHTML = "<span>🔥 ¡TIRADA FINAL DE LA SUERTE!</span>";
+        document.getElementById('modalBtn').className = "btn btn-gold";
+
+        setTimeout(() => {
+          document.getElementById('prankModal').classList.add('active');
+        }, 500);
+
       } else {
-        // Second spin landed on ¡¡Regalo sorpresa!! -> Go to Chest Screen
+        // Joint Spin landed on JACKPOT -> Move to chest
         confetti({
-          particleCount: 80,
-          spread: 70,
+          particleCount: 90,
+          spread: 80,
           origin: { y: 0.6 }
         });
         AudioEngine.playFanfare();
@@ -1173,11 +1250,13 @@
       }
     }
 
-    function acceptSecondChance() {
-      document.getElementById('firstSpinModal').classList.remove('active');
-      spinCount = 1;
+    function handleModalNextStep() {
+      document.getElementById('prankModal').classList.remove('active');
+      currentStage++;
+      renderLegend();
+      currentAngle = 0;
+      drawWheel();
       document.getElementById('spinBtn').disabled = false;
-      document.getElementById('spinBtn').innerText = "🍀 TIRADA EXTRA DE LA SUERTE";
     }
 
     /* ================= SCREEN 2: CLASH ROYALE CHEST TAP MECHANIC ================= */
@@ -1191,17 +1270,14 @@
       remainingTaps--;
       const progressPercent = ((totalTaps - remainingTaps) / totalTaps) * 100;
 
-      // Update displays
       document.getElementById('tapCountDisplay').innerText = remainingTaps;
       document.getElementById('progressFill').style.width = `${progressPercent}%`;
 
-      // Pitch increases as taps get closer to 0
       const pitchMultiplier = 1 + ((totalTaps - remainingTaps) / totalTaps) * 1.2;
       AudioEngine.playTap(pitchMultiplier);
 
       if (navigator.vibrate) navigator.vibrate(25 + (totalTaps - remainingTaps) * 2);
 
-      // Wobble chest animation
       const chestEmoji = document.getElementById('chestEmoji');
       const chestAura = document.getElementById('chestAura');
       const chestContainer = document.getElementById('chestContainer');
@@ -1210,16 +1286,13 @@
       void chestEmoji.offsetWidth;
       chestEmoji.classList.add('chest-shaking');
 
-      // Expand aura & glow
       const glowScale = 1 + ((totalTaps - remainingTaps) / totalTaps) * 0.8;
       const glowOpacity = 0.4 + ((totalTaps - remainingTaps) / totalTaps) * 0.6;
       chestAura.style.transform = `scale(${glowScale})`;
       chestAura.style.opacity = glowOpacity;
 
-      // Spawn floating sparkles/particles on tap
       spawnTapParticles(event, chestContainer);
 
-      // Micro confetti on higher taps
       if (remainingTaps % 4 === 0 || remainingTaps <= 3) {
         confetti({
           particleCount: 15 + (totalTaps - remainingTaps),
@@ -1228,7 +1301,6 @@
         });
       }
 
-      // Final Tap Reached!
       if (remainingTaps === 0) {
         triggerChestFinalOpening();
       }
@@ -1268,7 +1340,6 @@
       // Endless Continuous Confetti Loop
       startEndlessConfetti();
 
-      // Transition to final screen
       setTimeout(() => {
         goToScreen('screen-reveal');
       }, 900);
@@ -1278,14 +1349,12 @@
     function startEndlessConfetti() {
       if (confettiInterval) clearInterval(confettiInterval);
 
-      // Initial burst
       confetti({
         particleCount: 90,
         spread: 100,
         origin: { y: 0.6 }
       });
 
-      // Continuous raining bursts from left and right
       confettiInterval = setInterval(() => {
         confetti({
           particleCount: 25,
@@ -1313,16 +1382,6 @@
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       const target = document.getElementById(screenId);
       if (target) target.classList.add('active');
-    }
-
-    function triggerCelebrationConfetti() {
-      AudioEngine.playPuppyBark();
-      confetti({
-        particleCount: 100,
-        spread: 100,
-        origin: { y: 0.6 }
-      });
-      if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
     }
   </script>
 </body>

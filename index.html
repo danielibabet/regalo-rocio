@@ -1158,12 +1158,12 @@
         targetIndex = numSegments - 1;
       }
 
-      const totalFullRotations = (5 + Math.floor(Math.random() * 2)) * 2 * Math.PI;
+      const totalFullRotations = (8 + Math.floor(Math.random() * 2)) * 2 * Math.PI;
       const pointerAngle = 1.5 * Math.PI; // Top
       const segmentCenterAngle = targetIndex * arcSize + (arcSize / 2);
       const targetAngle = currentAngle + totalFullRotations + (pointerAngle - (currentAngle % (2 * Math.PI)) - segmentCenterAngle);
 
-      const duration = 4500;
+      const duration = 7500; // 7.5 seconds for maximum tension and slow dramatic finish
       const startTime = performance.now();
       const startAngle = currentAngle;
       let lastTickSegment = -1;
@@ -1171,7 +1171,9 @@
       function animateSpin(now) {
         const elapsed = now - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        const ease = 1 - Math.pow(1 - progress, 3.5);
+        
+        // Custom dramatic ease-out (ultra-slow final crawl)
+        const ease = 1 - Math.pow(1 - progress, 4.8);
         currentAngle = startAngle + (targetAngle - startAngle) * ease;
 
         drawWheel();
